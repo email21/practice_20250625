@@ -16,12 +16,15 @@ def main():
         content = f.read()
         print(content)
     
-    print("<위의 문장에서 갯수를 알고 싶은 단어를 입력하세요.>")
+    print("<<위의 문장에서 갯수를 알고 싶은 단어를 입력하세요.>>")
     new_word = input()
     print(f"{new_word} 단어 수:", analyzer. target_word_count(new_word))
     
     # 미션2 가장 긴 단어 찾기
     print("가장 긴 단어:", analyzer.longest_word())
+    
+    # 미션3 기본 word_count()에 더해 "특정 단어가 몇 번 나왔는지"를 같이 리턴하는 기능 추가하기
+    print(f"전체 단어 수, '{word}' 횟수:", analyzer.word_count_with_target(count))
 
 if __name__ == "__main__":
     main()

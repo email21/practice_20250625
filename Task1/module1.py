@@ -25,3 +25,11 @@ class AdvancedTextAnalyzer(NewTextAnalyzer):
         words = self.text.split()  # list
         longest = max(words, key=len)
         return longest
+    
+    # 미션3
+    def word_count_with_target(self,target_word):
+        # 3. super 를 활용하여 기존 메서드 (word_count) 불러와 수정하기
+        total = super().word_count()  # 드래그-> ctrl+클릭 하면 위치 보여줌
+        # count = self.text.split().count(target_word)
+        count = super().most_common_word()[1]
+        return total, count
