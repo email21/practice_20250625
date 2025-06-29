@@ -37,7 +37,7 @@ class Library:
             if book.title == title:
                 print("🔍 책을 찾았습니다:")
                 print(book)
-                return
+                return book
         print("search_book() : ❌ 해당 책이 없습니다.")
 
     def list_books(self):
@@ -48,6 +48,7 @@ class Library:
             for book in self.books:
                 print(book)
 
+# 미션 1. 유저인증 파트 추가하기
 # 미션 1-2. BaseLibrary class 상속받아서 users 정보 받아오는 AuthLibrary 만들기
 class AuthLibrary(Library):
     def __init__(self):
@@ -75,3 +76,34 @@ class AuthLibrary(Library):
             return True
         else:
             return False
+
+# 미션2. 도서 대출/반납 기능 추가하기        
+# 1. 로그인기능이 있는 AuthLibrary 상속받아 대출 기능 추가한 LonLibrary 만들기
+class LoanLibrary(AuthLibrary):
+    def __init__(self):
+        super().__init__()
+        self.loans = {}    # {username: [Book, ...]}
+
+    # 2. 책 빌리는 행위를 함수로 만들어주기 : 유저, 책정보
+    def borrow_book(self, username, title):
+        book = self.search_book(title)
+        if book:
+            self.books.remove(book)
+            self.loans.setdefault(username, []).append(book)
+            print("📦 대출 완료")
+        else:
+            print("❌ 책 없음")
+
+    # 3. 책을 반납받는 행위 함수로 만들어주기 : 유저, 책정보
+    def return_book(self, username, title):
+        if username not in self.loans:
+            print("❌ 대출 기록 없음")
+            return None  # 함수 종료 (None 반환)
+
+        for book in self.loans.get(username, []):
+            if book.title == title:
+                self.loans[username].remove(book)
+                self.books.append(book)
+                print("📥 반납 완료")
+                return None # 함수 종료 (None 반환)
+        print("❌ 반납 대상 아님")
