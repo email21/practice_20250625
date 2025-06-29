@@ -17,3 +17,11 @@ class TextAnalyzer:
 class NewTextAnalyzer(TextAnalyzer):
     def target_word_count(self,target_word):
         return self.text.split().count(target_word)
+    
+# 미션2. TextAnalyzer를 상속한 AdvancedTextAnalyzer를 만들어 다음 기능 추가
+# 주어진 텍스트에서 가장 긴 단어를 찾아주는 메서드 longest_word()를 구현하기
+class AdvancedTextAnalyzer(NewTextAnalyzer): 
+    def longest_word(self):
+        words = self.text.split()  # list
+        longest = max(words, key=len)
+        return longest
