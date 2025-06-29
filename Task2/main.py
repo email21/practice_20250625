@@ -1,8 +1,10 @@
-from module import LoanLibrary
+from module import FileLibrary
+import os
 
 # 메인 실행 부분
 def main():
-    lib = LoanLibrary()
+    lib = FileLibrary()
+    lib.load_all()
     current_user = None
     
     while not current_user:  # 가입된 유저가 없으면 반복
@@ -27,7 +29,7 @@ def main():
             return
     
     while True:
-        print("\n1. 책 추가 2. 삭제 3. 검색 4. 목록 5. 대출 6. 반납 7. 내 책 8. 종료")
+        print("\n1. 책 추가 2. 삭제 3. 검색 4. 목록\n5. 대출 6. 반납 7. 내 책 8. 저장 후 종료")
         sel = input("선택: ")
         if sel == '1':
             lib.add_book(input("제목: "), input("저자: "))
@@ -46,6 +48,8 @@ def main():
             for b in lib.loans.get(current_user, []):
                 print(b)
         elif sel == '8':
+            lib.save_all()
+            print("💾 저장 완료. 종료합니다.")
             break
 
 if __name__ == "__main__":
