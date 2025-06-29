@@ -1,8 +1,31 @@
-from module import Library
+from module import AuthLibrary
 
 # 메인 실행 부분
 def main():
-    lib = Library()  # 객체생성 lib
+    lib = AuthLibrary()
+    current_user = None
+    
+    while not current_user:  # 가입된 유저가 없으면 반복
+        print("\n1. 로그인  2. 회원가입  3. 종료")
+        cmd = input("선택: ")
+        if cmd == '1':
+            uid = input("아이디: ")
+            pw = input("비밀번호: ")
+            if lib.login(uid, pw):
+                current_user = uid
+                print("✅ 로그인 성공")
+            else:
+                print("❌ 실패")
+        elif cmd == '2':
+            uid = input("아이디 생성: ")
+            pw = input("비번 생성: ")
+            if lib.register_user(uid, pw):
+                print("✅ 회원가입 완료")
+            else:
+                print("❌ 이미 존재하는 아이디입니다.")
+        else:
+            return
+    
 
     while True:
         print("\n📘 도서관 관리 프로그램")
