@@ -1,0 +1,10 @@
+모듈화 구조조
+
+library_system/
+├── main.py              # 실행 파일
+├── models.py            # Book, User, Library 클래스
+├── storage.py           # 파일 저장/불러오기 로직
+└── data/
+  ├── books.txt
+  ├── users.txt
+  └── loans.txt
