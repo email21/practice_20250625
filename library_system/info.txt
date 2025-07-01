@@ -1,4 +1,4 @@
-모듈화 구조조
+모듈화 구조
 
 library_system/
 ├── main.py              # 실행 파일
